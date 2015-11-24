@@ -26,6 +26,8 @@ import java.util.concurrent.TimeUnit;
 
 
 /** This class provides the main Task display page of the application.
+ * Information is displayed through a list view (see XML for details). Information is obtained through a php file whose location
+ * is specified in Config (along with quite a number of variable names.)
  * @author Owen Galvin, 10/19/2015
  * @modified Will Lewis 10/25/2015
  * @modified Sarah Manski for 11/23/15
@@ -42,6 +44,7 @@ public class TaskActivity extends AppCompatActivity implements ListView.OnItemCl
     private ArrayList<String> dateTimeList = new ArrayList<String>();
     private PendingIntent pendingIntent;
 
+    //Basic initialization, also sets a listener which we use to start ViewActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -258,6 +261,7 @@ public class TaskActivity extends AppCompatActivity implements ListView.OnItemCl
 
     @Override
     //goes to ViewActivity when an item in the listView is clicked
+    //Note that activity_id is sent in an extra, this is so that ViewActivity may use said id for data retrivial. 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(this, ViewActivity.class);
         HashMap<String,String> map =(HashMap)parent.getItemAtPosition(position);
