@@ -115,12 +115,12 @@ public class TaskActivity extends AppCompatActivity implements ListView.OnItemCl
                 int listLength = dateTimeList.size();
                 ArrayList<Intent> intents = new ArrayList<Intent>();
                 for(int i = 0; i < listLength; i++) {
-
+                    //Two instantiated calendar objects, one for currentTime, one to set the datetime information to.
                     Calendar currentTime = Calendar.getInstance();
                     Calendar calendar = Calendar.getInstance();
 
                     String datetime = dateTimeList.get(i);
-                    System.out.println(datetime);
+                    //System.out.println(datetime);
                     //splits datetime into date and time
                     String[] partA = datetime.split(" ");
                     //partA1 is date, partA2 is time
@@ -156,9 +156,12 @@ public class TaskActivity extends AppCompatActivity implements ListView.OnItemCl
                     calendar.set(Calendar.SECOND, 0);
                     //calendar.set(Calendar.AM_PM, Calendar.PM);
 
+                    //This comparison returns a number less than 0 when calendar is AFTER currentTime
                     int comparison = currentTime.compareTo(calendar);
+                    //If calendar is AFTER currentTime, this if statement takes effect
+                    //It preps an intent and starts the activation of notifications
                     if (comparison < 0){
-                        System.out.println("here");
+                        //System.out.println("here");
                         Intent myIntent = new Intent(TaskActivity.this, MyReceiver.class);
                         myIntent.putExtra(Config.ST_ID, TaskActivity.student_id);
                         intents.add(myIntent);
