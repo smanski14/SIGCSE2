@@ -14,6 +14,10 @@ public class Utils {
     @SuppressWarnings("static-access")
     public static void generateNotification(Context context) {
 
+        //This is where the MAGIC happens OOOOOOOOOOOOOO EXPECTO PATRONUM. Ahem.
+        //Anyways, this takes in a context from MyReceiver and starts another intent. The pendingIntent
+        //sets up the onclick for the notification
+        //the notificationCompat.Builder sets the values for the notification.
         Intent intent = new Intent(context, TaskActivity.class);
         intent.putExtra(Config.ST_ID,TaskActivity.student_id);
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
