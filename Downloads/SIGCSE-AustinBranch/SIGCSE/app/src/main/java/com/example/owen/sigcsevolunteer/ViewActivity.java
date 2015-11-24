@@ -18,7 +18,7 @@ import org.json.JSONObject;
  */
 
 public class ViewActivity extends AppCompatActivity {
-
+    //Variables to save important information in.
     private TextView editTextName;
     private TextView editTextStartTime;
     private TextView editTextEndTime;
@@ -27,6 +27,7 @@ public class ViewActivity extends AppCompatActivity {
 
     private String id;
 
+    //Simple onCreate, see XML file for details.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
