@@ -5,13 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+//This class is called from TaskActivity by an intent related to notifications
 public class MyReceiver extends BroadcastReceiver
 {
 
     @Override
     public void onReceive(Context context, Intent intent)
     {
-        //Intent service1/context.startService lines might need to be commented out
+        //MyAlarmService is called here to start a new intent, which is then called to start a service, and finally
+        //passed to Utils.java
         Intent service1 = new Intent(context, MyAlarmService.class);
         context.startService(service1);
         Log.i("App", "called receiver method");
