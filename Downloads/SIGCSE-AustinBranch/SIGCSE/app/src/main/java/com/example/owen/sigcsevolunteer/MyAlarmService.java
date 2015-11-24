@@ -7,7 +7,7 @@ import android.os.IBinder;
 public class MyAlarmService extends Service
 
 {
-
+    //This just provides the basic funcitonality of the AlarmService that is used in a few places.
     @Override
     public IBinder onBind(Intent arg0)
     {
