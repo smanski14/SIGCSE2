@@ -5,6 +5,8 @@ import android.os.Bundle;
 /** This class provides the options page of the application.
  * @author Owen Galvin, 10/19/2015
  */
+ 
+ //This class immediately opens SettingsFragment. 
 public class OptionActivity extends TaskActivity
 {
 
