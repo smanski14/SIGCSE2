@@ -18,7 +18,7 @@ import org.json.JSONObject;
 /**
  * Created by Owen on 10/19/15.
  * Edited by Sarah for 11/23/15
- * File Description: Authenticates user information through signIn by accessing student table in SIGCSE database
+ * File Description: Authenticates user information through signIn by accessing student table in SIGCSE database.
  */
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -35,10 +35,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        //Initializing views
+        //Initializing views and button
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-
         buttonSignIn = (Button) findViewById(R.id.signIn);
 
         //Setting listeners to button
@@ -60,6 +59,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private void signInBackground(String s)
     {
         try {
+            //parses JSON information retrieved from doInBackground
             JSONObject jsonObject = new JSONObject(s);
             JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
             JSONObject c = result.getJSONObject(0);
@@ -77,7 +77,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
             }
-            //if username and password are valid, starts MainActivity
+            //if username and password are valid, starts MainActivity and passes the student_id and preferred_name retrieved from signIn AsyncTask
             else{
                 String preferred_name = c.getString(Config.TAG_NAME);
                 Intent intent = new Intent(this, MainActivity.class);
