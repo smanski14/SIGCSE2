@@ -62,7 +62,6 @@ public class TaskActivity extends AppCompatActivity implements ListView.OnItemCl
     private void getActivityIDBackground(String s)
     {
 
-
         try {
             JSONObject jsonObject = new JSONObject(s);
             JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
@@ -73,18 +72,18 @@ public class TaskActivity extends AppCompatActivity implements ListView.OnItemCl
                 list.add(activity_id);
                 System.out.println(activity_id);
             }
-
         }
-
          catch (JSONException e) {
             e.printStackTrace();
         }
 
+        //cycles through activity_id's and gets the activity information in a JSON format
         for(int j=0; j<list.size();j++){
             HashMap<String, String> wait = getJSON(list.get(j));
             listForView.add(wait);
         }
-        System.out.println("listForView: "+listForView.size());
+        
+        //Populates listView
         ListAdapter adapter = new SimpleAdapter(
                 TaskActivity.this, listForView, R.layout.list_item,
                 new String[]{Config.TAG_ACTIVITY_NAME,Config.TAG_ACTIVITY_START_TIME},
@@ -112,7 +111,7 @@ public class TaskActivity extends AppCompatActivity implements ListView.OnItemCl
                 getActivityIDBackground(s);
 
 
-
+                
                 int listLength = dateTimeList.size();
                 ArrayList<Intent> intents = new ArrayList<Intent>();
                 for(int i = 0; i < listLength; i++) {
@@ -175,6 +174,7 @@ public class TaskActivity extends AppCompatActivity implements ListView.OnItemCl
             }
 
             @Override
+            //retrieves activity_ids from database using the student_id
             protected String doInBackground(Void... params) {
 
                 RequestHandler rh = new RequestHandler();
@@ -200,24 +200,17 @@ public class TaskActivity extends AppCompatActivity implements ListView.OnItemCl
             jsonObject = new JSONObject(s);
             JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
 
-
                 JSONObject jo = result.getJSONObject(0);
                 String name = jo.getString(Config.TAG_ACTIVITY_NAME);
                 String time = jo.getString(Config.TAG_ACTIVITY_START_TIME);
                 dateTimeList.add(time);
-            System.out.println(name);
-            System.out.println(time);
-
-
 
                 people.put(Config.TAG_ACTIVITY_NAME,name);
                 people.put(Config.TAG_ACTIVITY_START_TIME,time);
 
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         return people;
     }
 
@@ -244,6 +237,7 @@ public class TaskActivity extends AppCompatActivity implements ListView.OnItemCl
             }
 
             @Override
+            //gets activity information using activity_id
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
                 String s = rh.sendGetRequestParam(Config.URL_GET_ACT, id);
