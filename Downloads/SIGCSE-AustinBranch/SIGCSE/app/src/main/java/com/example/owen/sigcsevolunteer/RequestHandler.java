@@ -36,6 +36,7 @@ public class RequestHandler {
     public String sendGetRequestParam(String requestURL, String email, String password){
         StringBuilder sb =new StringBuilder();
         try {
+            //attaches email and password information to the URL
             URL url = new URL(requestURL+"\""+email+"\"&password=\""+password+"\"");
             System.out.println(url.toString());
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
